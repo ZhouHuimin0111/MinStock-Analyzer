@@ -3,7 +3,7 @@
 from openai import OpenAI
 
 # 1. 把这里替换成你刚刚复制的那一长串字符
-API_KEY = "53854b9b7e4a4b9d8b06e7f64ab4da7d.50pRsZM7y7pCqnKv"
+API_KEY = "da951ab276ff4dc4bdfa0f19433ab6ce.GMZXPR2ghPUnLACJ"
 
 # 2. 智谱 AI 的官方接口地址和免费模型名称
 BASE_URL = "https://open.bigmodel.cn/api/paas/v4"
