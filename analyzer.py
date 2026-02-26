@@ -2,14 +2,18 @@
 
 #大模型看不懂复杂的 Python 数据对象（比如 DataFrame），它只懂文本。所以我们需要在代码里，把抓到的历史行情转换成结构化的字符串，然后嵌入到预设的 Prompt（提示词）中，最后发给大模型。
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
-# 加载 .env 文件里的隐藏变量
 load_dotenv()
 
-# 用这种方式安全获取 API Key
-API_KEY = os.getenv("ZHIPU_API_KEY")
-#让程序去 .env 文件里“偷偷”拿钥匙，而不是直接暴露在代码里
+# 兼容本地开发和云端部署的密钥读取逻辑
+try:
+    # 优先尝试从 Streamlit 专用的 secrets 字典读取（云端生效）
+    API_KEY = st.secrets["ZHIPU_API_KEY"]
+except Exception:
+    # 报错则回退到读取本地系统的环境变量（本地生效）
+    API_KEY = os.getenv("ZHIPU_API_KEY")
 
 import akshare as ak
 import pandas as pd
